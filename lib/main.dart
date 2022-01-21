@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:hotelo/btbar.dart';
 
 import 'homepage.dart';
 
@@ -11,7 +12,7 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      title: 'Flutter Demo',
+      title: 'Hotelo',
       theme: ThemeData(
         // This is the theme of your application.
         //
@@ -24,7 +25,7 @@ class MyApp extends StatelessWidget {
         // is not restarted.
         primarySwatch: Colors.blue,
       ),
-      home: HomePage(),
+      home: Btbar(),
     );
   }
 }
