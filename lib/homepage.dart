@@ -254,7 +254,6 @@ class _HomePageState extends State<HomePage> {
                                 child: Text(
                                   "Food Saved",
                                   style: textstyle.copyWith(
-                                      color: Color(0xff01dc82),
                                       fontSize: 25,
                                       fontWeight: FontWeight.bold),
                                 ),
@@ -262,7 +261,7 @@ class _HomePageState extends State<HomePage> {
                               Text("(one week)",
                                   style: textstyle.copyWith(
                                       fontSize: 15,
-                                      //color: Color(0xff01dc82),
+                                      color: Color(0xff4D5C5A),
                                       fontWeight: FontWeight.bold))
                             ],
                           ),
@@ -281,7 +280,6 @@ class _HomePageState extends State<HomePage> {
                                 text: TextSpan(
                                     text: "200",
                                     style: textstyle.copyWith(
-                                        color: Color(0xff01dc82),
                                         fontSize: 25,
                                         fontWeight: FontWeight.bold),
                                     children: [
@@ -289,7 +287,8 @@ class _HomePageState extends State<HomePage> {
                                           text: "\nKG(s)",
                                           style: textstyle.copyWith(
                                               fontSize: 15,
-                                              //color: Color(0xff01dc82),
+                                              color: Color(
+                                                  0xff4D5C5A), //color: Color(0x6A9CA2),
                                               fontWeight: FontWeight.bold))
                                     ]),
                               ),
