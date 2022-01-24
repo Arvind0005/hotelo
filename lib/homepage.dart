@@ -64,7 +64,7 @@ class _HomePageState extends State<HomePage> {
                       padding: const EdgeInsets.all(15.0),
                       child: ListView(
                         //shrinkWrap: true,
-                        physics: NeverScrollableScrollPhysics(),
+                        //  physics: NeverScrollableScrollPhysics(),
                         //shrinkWrap: true,
                         children: [
                           Text(
