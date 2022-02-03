@@ -1,0 +1,31 @@
+{
+  "name": "hotelo",
+  "version": "1.0.0",
+  "description": "A new Flutter project.",
+  "main": "index.js",
+  "directories": {
+    "lib": "lib",
+    "test": "test"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Arvind0005/hotelo.git"
+  },
+  "author": "Arvind S",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Arvind0005/hotelo/issues"
+  },
+  "homepage": "https://github.com/Arvind0005/hotelo#readme",
+  "dependencies": {
+    "body-parser": "^1.19.1",
+    "cloudinary": "^1.28.1",
+    "cors": "^2.8.5",
+    "express": "^4.17.2",
+    "mongoose": "^6.2.0",
+    "nodemon": "^2.0.15"
+  }
+}
