@@ -21,11 +21,14 @@
   },
   "homepage": "https://github.com/Arvind0005/hotelo#readme",
   "dependencies": {
+    "@types/node": "^17.0.14",
     "body-parser": "^1.19.1",
     "cloudinary": "^1.28.1",
     "cors": "^2.8.5",
     "express": "^4.17.2",
     "mongoose": "^6.2.0",
-    "nodemon": "^2.0.15"
+    "nodemon": "^2.0.15",
+    "save-dev": "0.0.1-security",
+    "ts-node": "^10.4.0"
   }
 }
