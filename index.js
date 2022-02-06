@@ -43,16 +43,20 @@ app.get("/hello",function(req,res)
 });
 app.use(bodyParser.urlencoded({extended: false}));
 app.use(bodyParser.json());
-app.get("/addshop",function(req,res)
+app.post("/addshop",function(req,res)
 {
+    
+  //  res.send("hello");
     const shopprofiles =  ShopProfiles({
-        shopname:'shopname',
-        contact_number:123456789
+        shopname:req.body.shopname,
+        add1: req.body.add1,
+        add2:req.body.add2,
+        add3:req.body.add3,
+        add4:req.body.add4,
+        email:req.body.email,
+        contact_number: req.body.mobile,
     })
-    // const shopProfiles = ShopProfiles(
-    //     {
-    //         
-    //     });
+
     shopprofiles.save().catch(function(err)
     {
         console.log(err);
@@ -60,4 +64,5 @@ app.get("/addshop",function(req,res)
     {
         res.send(result+"\n\nDocument sucessfully uploaded to Database!\n");
     });
+    console.log("data sucessfully added to db");
 });

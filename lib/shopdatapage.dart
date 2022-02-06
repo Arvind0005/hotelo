@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:http/http.dart' as http;
 
 class ShopData extends StatefulWidget {
   const ShopData({Key key}) : super(key: key);
@@ -9,6 +10,8 @@ class ShopData extends StatefulWidget {
 }
 
 class _ShopDataState extends State<ShopData> {
+  String shopname, add1, add2, add3, add4, email;
+  double mobile;
   var inputdecoration = InputDecoration(
       labelStyle: TextStyle(color: Color(0xff6A9CA2)),
       enabledBorder: OutlineInputBorder(
@@ -86,12 +89,13 @@ class _ShopDataState extends State<ShopData> {
                 // controller: titlecontroller,
                 validator: (val) {
                   return val.length > 25 || val.isEmpty
-                      ? "Title Length should be less than 25 letters"
+                      ? "Please enter the shopname"
                       : null;
                 },
                 decoration: inputdecoration.copyWith(hintText: "Shopname"),
                 onChanged: (val) async {
                   setState(() {});
+                  shopname = val;
                   //print(titlelength);
                 },
               ),
@@ -118,13 +122,15 @@ class _ShopDataState extends State<ShopData> {
                 // controller: titlecontroller,
                 validator: (val) {
                   return val.length > 25 || val.isEmpty
-                      ? "Title Length should be less than 25 letters"
+                      ? "please enter the flat no./street name"
                       : null;
                 },
                 decoration:
                     inputdecoration.copyWith(hintText: "Flat No./Street name"),
                 onChanged: (val) async {
-                  setState(() {});
+                  setState(() {
+                    add1 = val;
+                  });
                   //print(titlelength);
                 },
               ),
@@ -140,13 +146,15 @@ class _ShopDataState extends State<ShopData> {
                   // controller: titlecontroller,
                   validator: (val) {
                     return val.length > 25 || val.isEmpty
-                        ? "Title Length should be less than 25 letters"
+                        ? "please enter city/town/village name"
                         : null;
                   },
                   decoration: inputdecoration.copyWith(
                       hintText: "City/Town/Village name"),
                   onChanged: (val) async {
-                    setState(() {});
+                    setState(() {
+                      add2 = val;
+                    });
                     //print(titlelength);
                   },
                 ),
@@ -165,13 +173,15 @@ class _ShopDataState extends State<ShopData> {
                       // controller: titlecontroller,
                       validator: (val) {
                         return val.length > 25 || val.isEmpty
-                            ? "Title Length should be less than 25 letters"
+                            ? "please enter the state name"
                             : null;
                       },
                       decoration:
                           inputdecoration.copyWith(hintText: "State name"),
                       onChanged: (val) async {
-                        setState(() {});
+                        setState(() {
+                          add3 = val;
+                        });
                         //print(titlelength);
                       },
                     ),
@@ -188,12 +198,14 @@ class _ShopDataState extends State<ShopData> {
                       // controller: titlecontroller,
                       validator: (val) {
                         return val.length > 25 || val.isEmpty
-                            ? "Title Length should be less than 25 letters"
+                            ? "please enter the pincode"
                             : null;
                       },
                       decoration: inputdecoration.copyWith(hintText: "Pincode"),
                       onChanged: (val) async {
-                        setState(() {});
+                        setState(() {
+                          add4 = val;
+                        });
                         //print(titlelength);
                       },
                     ),
@@ -223,12 +235,14 @@ class _ShopDataState extends State<ShopData> {
                 // controller: titlecontroller,
                 validator: (val) {
                   return val.length > 25 || val.isEmpty
-                      ? "Title Length should be less than 25 letters"
+                      ? "please enter the email"
                       : null;
                 },
                 decoration: inputdecoration.copyWith(hintText: "Email address"),
                 onChanged: (val) async {
-                  setState(() {});
+                  setState(() {
+                    email = val;
+                  });
                   //print(titlelength);
                 },
               ),
@@ -252,15 +266,18 @@ class _ShopDataState extends State<ShopData> {
             child: Padding(
               padding: const EdgeInsets.only(left: 8.0, right: 8.0),
               child: TextFormField(
+                keyboardType: TextInputType.number,
                 // controller: titlecontroller,
                 validator: (val) {
                   return val.length > 25 || val.isEmpty
-                      ? "Title Length should be less than 25 letters"
+                      ? "please enter contact number"
                       : null;
                 },
                 decoration: inputdecoration.copyWith(hintText: "Contact"),
                 onChanged: (val) async {
-                  setState(() {});
+                  setState(() {
+                    mobile = double.parse(val);
+                  });
                   //print(titlelength);
                 },
               ),
@@ -280,7 +297,38 @@ class _ShopDataState extends State<ShopData> {
                     style: textstyle.copyWith(
                         fontSize: 16, fontWeight: FontWeight.w700),
                   ),
-                  onPressed: () {},
+                  onPressed: () async {
+                    print("xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx");
+                    var client = http.Client();
+                    final url = Uri.parse("http://10.0.2.2:3000/addshop");
+                    http.Response response = await client.post(url, body: {
+                      'shopname': shopname,
+                      'mobile': mobile.toString(),
+                      'add1': add1,
+                      'add2': add2,
+                      'add3': add3,
+                      'add4': add4,
+                      'email': email,
+                      'mobile': mobile,
+                    });
+
+                    print(response.body);
+                    print({
+                      shopname,
+                      " ",
+                      add1,
+                      " ",
+                      add2,
+                      " ",
+                      add3,
+                      " ",
+                      add4,
+                      " ",
+                      email,
+                      " ",
+                      mobile
+                    });
+                  },
                 ),
               ),
               Spacer()
