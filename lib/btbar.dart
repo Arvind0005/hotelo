@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:hotelo/datapage.dart';
 import 'package:hotelo/homepage.dart';
+import 'package:hotelo/ingredients.dart';
 
 class Btbar extends StatefulWidget {
   const Btbar({Key key}) : super(key: key);
@@ -16,6 +17,7 @@ class _BtbarState extends State<Btbar> {
   List<Widget> widgets = [
     HomePage(),
     DataPage(),
+    Ingredients_page(),
   ];
   Widget build(BuildContext context) {
     return Scaffold(
@@ -48,6 +50,11 @@ class _BtbarState extends State<Btbar> {
                 style: TextStyle(
                     fontWeight: FontWeight.bold, color: Color(0xff0b3e3f))),
           ),
+          BottomNavigationBarItem(
+              icon: FaIcon(FontAwesomeIcons.boxes),
+              title: Text("Ingredients",
+                  style: TextStyle(
+                      fontWeight: FontWeight.bold, color: Color(0xff0b3e3f)))),
         ],
       ),
       body: widgets[index],

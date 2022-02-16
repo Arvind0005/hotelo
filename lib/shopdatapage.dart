@@ -298,6 +298,7 @@ class _ShopDataState extends State<ShopData> {
                         fontSize: 16, fontWeight: FontWeight.w700),
                   ),
                   onPressed: () async {
+                    print(add1);
                     print("xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx");
                     var client = http.Client();
                     final url = Uri.parse("http://10.0.2.2:3000/addshop");
@@ -309,7 +310,7 @@ class _ShopDataState extends State<ShopData> {
                       'add3': add3,
                       'add4': add4,
                       'email': email,
-                      'mobile': mobile,
+                      // 'mobile': mobile,
                     });
 
                     print(response.body);

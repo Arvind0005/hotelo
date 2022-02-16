@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
-
+import 'package:http/http.dart' as http;
 import 'datapage.dart';
 
 class SalesPage extends StatefulWidget {
@@ -11,6 +11,9 @@ class SalesPage extends StatefulWidget {
 }
 
 class _SalesPageState extends State<SalesPage> {
+  String date;
+  String dishname;
+  double sales;
   DataPage _dataPage = DataPage();
   var inputdecoration = InputDecoration(
       labelText: "Dish",
@@ -137,15 +140,20 @@ class _SalesPageState extends State<SalesPage> {
                 right: 8.0,
               ),
               child: TextFormField(
+                decoration: InputDecoration(
+                  hintText: "Date",
+                ),
                 // controller: titlecontroller,
                 validator: (val) {
                   return val.length > 25 || val.isEmpty
-                      ? "Title Length should be less than 25 letters"
+                      ? "please enter the date"
                       : null;
                 },
                 // decoration: inputdecoration.copyWith(hintText: "Contact"),
                 onChanged: (val) async {
-                  setState(() {});
+                  setState(() {
+                    date = val;
+                  });
                   //print(titlelength);
                 },
               ),
@@ -167,12 +175,14 @@ class _SalesPageState extends State<SalesPage> {
                 // controller: titlecontroller,
                 validator: (val) {
                   return val.length > 25 || val.isEmpty
-                      ? "Title Length should be less than 25 letters"
+                      ? "please select the dish"
                       : null;
                 },
                 decoration: inputdecoration,
                 onChanged: (val) async {
-                  setState(() {});
+                  setState(() {
+                    dishname = val;
+                  });
                   //print(titlelength);
                 },
               ),
@@ -189,12 +199,14 @@ class _SalesPageState extends State<SalesPage> {
                 // controller: titlecontroller,
                 validator: (val) {
                   return val.length > 25 || val.isEmpty
-                      ? "Title Length should be less than 25 letters"
+                      ? "please enter the sales"
                       : null;
                 },
                 decoration: inputdecoration.copyWith(labelText: "Sales"),
-                onChanged: (val) async {
-                  setState(() {});
+                onChanged: (val) {
+                  setState(() {
+                    sales = double.parse(val);
+                  });
                   //print(titlelength);
                 },
               ),
@@ -217,7 +229,21 @@ class _SalesPageState extends State<SalesPage> {
                 style: textstyle.copyWith(
                     fontSize: 16, fontWeight: FontWeight.w700),
               ),
-              onPressed: () {},
+              onPressed: () async {
+                String userdateid = "arvind" + date.toString();
+                print(userdateid);
+                print("$dishname $sales $date");
+                var client = http.Client();
+                final url = Uri.parse("http://10.0.2.2:3000/adddish");
+                http.Response response = await client.post(url, body: {
+                  'userdateid': userdateid,
+                  'dish': dishname.toString(),
+                  'sales': sales.toString(),
+                });
+                print("response");
+                print(response.body);
+                print("xxxx");
+              },
             ),
           ),
           Spacer()
